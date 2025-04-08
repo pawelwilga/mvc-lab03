@@ -1,4 +1,5 @@
 const menu = require('../constants/navigation');
+const productsSlice = require('../store/products');
 const { STATUS_CODE } = require("../constants/statusCode");
 
 const path = require("path");
@@ -16,23 +17,13 @@ router.get("/add", (_request, response) => {
 router.post("/add", (request, response) => {
   const { name, description } = request.body;
 
-  fileSystem.writeFile(
-    "product.txt",
-    `Name: ${name}, Description: ${description}`,
-    (error) => {
-      if (error) {
-        throw error;
-      }
-
-      response.status(STATUS_CODE.FOUND).redirect("/product/new");
-    }
-  );
+  productsSlice.newestProduct = { name: name, description: description };
+  productsSlice.products.push(productsSlice.newestProduct);
+  response.status(STATUS_CODE.FOUND).redirect("/products/new");
 });
 
 router.get("/new", (_request, response) => {
-  fileSystem.readFile("product.txt", "utf-8", (_error, data) => {
-    response.send(renderNewProductPage(data));
-  });
+  response.render('newest-product', { menuLinks: menu.MENU_LINKS, activeLinkPath: _request.path, headTitle: 'Shop - newest product', newestProduct: productsSlice.newestProduct })
 });
 
 module.exports = router;
