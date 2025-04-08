@@ -1,9 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Shop - Home</title>
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
-    <% include('partials/navigation') %>
+    <%- include('partials/navigation', { menuLinks: menuLinks, activeLinkPath: activeLinkPath }); %>
     <h1>Home</h1>
 
   </body>

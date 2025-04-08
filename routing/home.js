@@ -1,11 +1,11 @@
-const path = require("path");
+const menu = require('../constants/navigation');
 
 const express = require("express");
 
 const router = express.Router();
 
 router.get("/", (_request, response) => {
-  response.render('home');
+  response.render('home', { menuLinks: menu.MENU_LINKS, activeLinkPath: _request.path });
 });
 
 module.exports = router;
