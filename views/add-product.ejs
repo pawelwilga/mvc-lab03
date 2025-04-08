@@ -1,34 +1,26 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Shop - Add product</title>
+    <title><%= headTitle %></title>
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
-    <!-- 🏗 Structo the Builder -->
-    <!-- Wykorzystaj odpowiednią składnię EJS do odpowiednich zadań. -->
-    <!-- Podpowiedź: <%- include(..., { menuLinks: ..., activeLinkPath: ... }); %> -->
-    <nav>
-      <a href="/">Home</a>
-      <br />
-      <a href="/product/new">Newest product</a>
-      <br />
-      <a href="/logout">Logout</a>
-    </nav>
-    <h1>Add product</h1>
-    <form action="/product/add" method="POST">
-      <br />
-      <label>
-        Name
-        <br />
-        <input type="text" name="name" />
-      </label>
-      <br />
-      <label>
-        Description
-        <br />
-        <input type="text" name="description" />
-      </label>
-      <br />
-      <button type="submit">Add</button>
+    <%- include('partials/navigation', { menuLinks: menuLinks, activeLinkPath: activeLinkPath }); %>
+    <h1 class="heading">Add product</h1>
+    <form class="form" action="/product/add" method="POST">
+      <div class="form__group">
+        <label class="form__label">
+          Name
+          <input class="form__input" type="text" name="name" />
+        </label>
+      </div>
+      <div class="form__group">
+        <label class="form__label">
+          Description
+          <input class="form__input" type="text" name="description" />
+        </label>
+      </div>
+      <button class="button" type="submit">Add</button>
     </form>
   </body>
 </html>
