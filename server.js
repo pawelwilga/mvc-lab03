@@ -15,15 +15,9 @@ const { STATUS_CODE } = require("./constants/statusCode");
 
 const app = express();
 
-// 🔧 Configo the Setter
-// Zarejestruj "view engine" jako "ejs".
-// Podpowiedź: app.set(...);
-// Zarejestruj "views" jako "views".
-// Podpowiedź: app.set(...);
-
-// 🔧 Configo the Setter
-// Ustaw publiczny katalog plików statycznych w middleware.
-// Podpowiedź: app.use(express.static(...));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
